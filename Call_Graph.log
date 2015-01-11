@@ -1,0 +1,8 @@
+// draw_text is called from gl-render.cc for text objects
+// (xlabel, ylabel are text objects)
+glps_renderer::draw_text (const text::properties& props)
+
+// render_text is called from gl-render.cc for axis ticks
+Matrix glps_renderer::render_text (const std::string& txt,
+                            double x, double y, double z,
+                            int ha, int va, double rotation)

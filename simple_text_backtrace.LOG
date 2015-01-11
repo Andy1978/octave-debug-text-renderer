@@ -1,0 +1,76 @@
+axes ("xtick", [], "ytick", [], "ztick", []);
+text (0.5, 0.5, "Hello")
+
+#0  ft_render::render (this=0x7fffccb61528, elt=0x7fffcc181290, 
+    box=..., rotation=0)
+    at ../../octave-src/libinterp/corefcn/txt-eng-ft.cc:876
+#1  0x00007ffff72505ca in ft_render::text_to_pixels (
+    this=0x7fffccb61528, txt="Hello", pixels_=..., box=..., 
+    _halign=0, valign=1, rotation=0, interpreter=...)
+    at ../../octave-src/libinterp/corefcn/txt-eng-ft.cc:1006
+#2  0x00007ffff7068bcd in text::properties::update_text_extent (
+    this=0x7fffccb5f710)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:7909
+#3  0x00007ffff709df48 in text::properties::update_string (
+    this=0x7fffccb5f710) at corefcn/graphics.h:8324
+#4  0x00007ffff709cf36 in text::properties::set_string (
+    this=0x7fffccb5f710, val=...) at corefcn/graphics.h:8091
+#5  0x00007ffff6fdb889 in text::properties::set (
+    this=0x7fffccb5f710, pname_arg=..., val=...)
+    at corefcn/graphics-props.cc:3281
+#6  0x00007ffff7089f6d in base_graphics_object::set (
+    this=0x7fffccb5f700, pname=..., pval=...)
+    at corefcn/graphics.h:2976
+#7  0x00007ffff6f76f32 in graphics_object::set_value_or_default (
+    this=0x7fffd3a53d90, name=..., val=...)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:2316
+#8  0x00007ffff6f7686b in graphics_object::set (
+    this=0x7fffd3a53d90, args=...)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:2083
+#9  0x00007ffff6f777f0 in xset (h=..., args=...)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:2486
+#10 0x00007ffff70770ee in make_graphics_object (go_name="text", 
+    integer_figure_handle=false, args=...)
+#11 0x00007ffff707856c in F__go_text__ (args=...)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:10319
+
+####################################################################################
+
+
+#drawnow ("epsis2d", "true")
+
+
+#0  opengl_renderer::draw_text (this=0x7fffcc7be1b0, props=...)
+    at ../../octave-src/libinterp/corefcn/gl-render.cc:2655
+
+(von oben nach unten history)
+opengl_renderer::draw figure
+opengl_renderer::draw uimenu
+opengl_renderer::draw uimenu
+opengl_renderer::draw axes
+opengl_renderer::draw text
+opengl_renderer::draw text
+opengl_renderer::draw text
+opengl_renderer::draw text
+
+#6  0x00007ffff6f49218 in opengl_renderer::draw_figure (
+    this=0x7fffcc7be1b0, props=...)
+    at ../../octave-src/libinterp/corefcn/gl-render.cc:612
+#7  0x00007ffff6f484ed in opengl_renderer::draw (
+    this=0x7fffcc7be1b0, go=..., toplevel=true)
+    at ../../octave-src/libinterp/corefcn/gl-render.cc:572
+#8  0x00007fffd2e8e177 in OpenGL_fltk::draw (this=0x7fffcc7be090)
+    at ../../octave-src/libinterp/dldfcn/__init_fltk__.cc:181
+....
+#12 0x00007fffd292eb8d in Fl::check() ()
+   from /usr/lib/x86_64-linux-gnu/libfltk.so.1.3
+   
+in redraw_figure ein figure_manager::mark_modified (go.get_handle ()); Fl::check ();
+
+#13 0x00007fffd2e99b79 in fltk_graphics_toolkit::redraw_figure (
+    this=0x7fffcc542350, go=...)
+    at ../../octave-src/libinterp/dldfcn/__init_fltk__.cc:2174
+#14 0x00007ffff7087f12 in graphics_toolkit::redraw_figure (
+    this=0x7fffd3a553f0, go=...) at corefcn/graphics.h:2235
+#15 0x00007ffff707b10f in Fdrawnow (args=...)
+    at ../../octave-src/libinterp/corefcn/graphics.cc:10821
